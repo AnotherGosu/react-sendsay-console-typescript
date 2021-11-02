@@ -1,11 +1,11 @@
 import {useAppSelector} from 'store';
+import {shallowEqual} from 'react-redux';
 
 import Button from '../../common/Button';
 import {BUTTONS} from 'components/constants';
 
 export default function SubmitButton() {
-  const isLoading = useAppSelector((state) => state.console.isLoading);
-  const isRequestError = useAppSelector((state) => state.console.isRequestError);
+  const {isLoading, isRequestError} = useAppSelector((state) => state.console, shallowEqual);
 
   return (
     <Button type="submit" isLoading={isLoading} disabled={isRequestError}>

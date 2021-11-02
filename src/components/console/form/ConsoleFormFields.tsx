@@ -1,5 +1,6 @@
 import {useCallback} from 'react';
 import {useAppDispatch, useAppSelector} from 'store';
+import {shallowEqual} from 'react-redux';
 import {consoleSlice} from 'store/slices/console';
 
 import SplitTabs from './SplitTabs';
@@ -8,10 +9,7 @@ import {CONSOLE_FORM} from 'components/constants';
 
 export default function ConsoleFormFields() {
   const dispatch = useAppDispatch();
-  const request = useAppSelector((state) => state.console.request);
-  const response = useAppSelector((state) => state.console.response);
-  const isRequestError = useAppSelector((state) => state.console.isRequestError);
-  const isResponseError = useAppSelector((state) => state.console.isResponseError);
+  const {request, response, isRequestError, isResponseError} = useAppSelector((state) => state.console, shallowEqual);
 
   const onRequestChange = useCallback(({target}) => dispatch(consoleSlice.actions.setRequest(target.value)), [dispatch]);
 

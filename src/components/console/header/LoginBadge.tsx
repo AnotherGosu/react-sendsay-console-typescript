@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import {useAppSelector} from 'store';
+import {shallowEqual} from 'react-redux';
 
 export default function LoginBadge() {
-  const login = useAppSelector((state) => state.auth.login);
-  const sublogin = useAppSelector((state) => state.auth.sublogin);
+  const {login, sublogin} = useAppSelector((state) => state.auth, shallowEqual);
 
   return (
     <Wrapper>

@@ -1,15 +1,20 @@
+import {useRef} from 'react';
 import styled from 'styled-components';
 import {useAppSelector} from 'store';
+import useScroll from 'hooks/useScroll';
 
 import ClearHistoryButton from './ClearHistoryButton';
 import HistoryRecord from './HistoryRecord';
 
 export default function HistoryTrack() {
   const records = useAppSelector((state) => state.console.history);
+  const scrollerRef = useRef<HTMLDivElement>(null!);
+
+  useScroll(scrollerRef);
 
   return (
     <Wrapper>
-      <Scroller>
+      <Scroller ref={scrollerRef}>
         <RecordsContainer>
           {records.map((record) => (
             <HistoryRecord key={record.request.action} {...record} />

@@ -10,15 +10,16 @@ import {HistoryRecord as HistoryRecordType} from 'helpers/types';
 
 const HistoryRecord = memo(({request, isSuccessful}: HistoryRecordType) => {
   const recordRef = useRef<HTMLDivElement>(null!);
-  const {onHistoryRecordClick, copyCounter, isDropdownOpen, ...rest} = useHistoryRecord(recordRef);
+
+  const {onHistoryRecordClick, isDropdownOpen, isCopyAnimation, triggerCopyAnimation, ...rest} = useHistoryRecord(recordRef);
 
   return (
     <Wrapper onClick={onHistoryRecordClick} ref={recordRef}>
-      {!!copyCounter && <CopyAlert key={copyCounter} />}
+      <CopyAlert isCopyAnimation={isCopyAnimation} triggerCopyAnimation={triggerCopyAnimation} />
       <HistoryRecordStatus isSuccessful={isSuccessful} />
       <span>{request.action}</span>
       <Dots />
-      {isDropdownOpen && <Dropdown request={request} {...rest} />}
+      {isDropdownOpen && <Dropdown request={request} triggerCopyAnimation={triggerCopyAnimation} {...rest} />}
     </Wrapper>
   );
 });

@@ -12,10 +12,10 @@ interface Props {
   request: string;
   recordCoords: DOMRect;
   toggleDropdown: () => void;
-  triggerCopy: () => void;
+  triggerCopyAnimation: React.DispatchWithoutAction;
 }
 
-export default function Dropdown({request, recordCoords, toggleDropdown, triggerCopy}: Props) {
+export default function Dropdown({request, recordCoords, toggleDropdown, triggerCopyAnimation}: Props) {
   const dispatch = useDispatch();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const stringRequest = JSON.stringify(request, null, 2);
@@ -23,7 +23,7 @@ export default function Dropdown({request, recordCoords, toggleDropdown, trigger
   const onMakeRequestButtonClick = () => dispatch(makeRequest(stringRequest));
   const onCopyButtonClick = () => {
     navigator.clipboard.writeText(stringRequest);
-    triggerCopy();
+    triggerCopyAnimation();
   };
   const onDeleteButtonClick = () => dispatch(consoleSlice.actions.deleteHistoryRecord(request));
 

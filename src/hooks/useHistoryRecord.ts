@@ -4,7 +4,7 @@ export default function useHistoryRecord(recordRef: React.MutableRefObject<HTMLD
   const [isDropdownOpen, toggleDropdown] = useReducer((state) => !state, false);
 
   //necessary to rerender copy alert (replay animation)
-  const [copyCounter, triggerCopy] = useReducer((state) => state + 1, 0);
+  const [isCopyAnimation, triggerCopyAnimation] = useReducer((state) => !state, false);
 
   //control history record coordinates to position dropdown
   const [recordCoords, setRecordCoords] = useState<DOMRect>({} as DOMRect);
@@ -15,5 +15,5 @@ export default function useHistoryRecord(recordRef: React.MutableRefObject<HTMLD
     toggleDropdown();
   };
 
-  return {isDropdownOpen, copyCounter, triggerCopy, recordCoords, onHistoryRecordClick, toggleDropdown};
+  return {isDropdownOpen, recordCoords, isCopyAnimation, triggerCopyAnimation, onHistoryRecordClick, toggleDropdown};
 }

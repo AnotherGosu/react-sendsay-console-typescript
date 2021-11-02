@@ -75,13 +75,15 @@ export const consoleSlice = createSlice({
     builder.addCase(makeRequest.rejected, (state, action) => {
       state.isLoading = false;
       const record = action.payload as MakeRequestConfig['rejectValue'];
-      state.request = JSON.stringify(record.request, null, 2);
 
       if (record.response === 'Not valid JSON') {
         state.isRequestError = true;
+        state.isResponseError = false;
+        state.response = '';
       } else {
         state.isResponseError = true;
         state.response = JSON.stringify(record.response, null, 2);
+        state.request = JSON.stringify(record.request, null, 2);
         updateHistory({history: state.history, record});
       }
     });

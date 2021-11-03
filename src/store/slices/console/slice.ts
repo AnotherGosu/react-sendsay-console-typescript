@@ -4,6 +4,7 @@ import validateJSON from 'helpers/validateJSON';
 import updateHistory from 'helpers/updateHistory';
 
 import {ConsoleState, MakeRequestData, MakeRequestReturnValue, MakeRequestConfig} from './types';
+import {REQUEST_VALIDATION_ERROR} from './constants';
 
 const initialState: ConsoleState = {
   isLoading: false,
@@ -17,9 +18,13 @@ const initialState: ConsoleState = {
 export const makeRequest = createAsyncThunk<MakeRequestReturnValue, MakeRequestData, MakeRequestConfig>(
   'console/makeRequest',
   async (data, {rejectWithValue, getState}) => {
-    //data can be provided by history record
-    const request = validateJSON(data || getState().console.request);
-    if (!request) return rejectWithValue({response: 'Not valid JSON', request, isSuccessful: false});
+    //grab data from history record or from state
+    const stringJSON = data || getState().console.request;
+    const request = validateJSON(stringJSON);
+
+    if (!request || stringJSON !== JSON.stringify(request, null, 2)) {
+      return rejectWithValue({response: REQUEST_VALIDATION_ERROR, request, isSuccessful: false});
+    }
 
     try {
       const response = await sendsay.request(request);
@@ -76,11 +81,14 @@ export const consoleSlice = createSlice({
       state.isLoading = false;
       const record = action.payload as MakeRequestConfig['rejectValue'];
 
-      if (record.response === 'Not valid JSON') {
+      //request is invalid
+      if (record.response === REQUEST_VALIDATION_ERROR) {
         state.isRequestError = true;
         state.isResponseError = false;
         state.response = '';
-      } else {
+      }
+      //request is valid but response is an error
+      else {
         state.isResponseError = true;
         state.response = JSON.stringify(record.response, null, 2);
         state.request = JSON.stringify(record.request, null, 2);

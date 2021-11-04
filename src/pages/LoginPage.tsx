@@ -31,5 +31,5 @@ const Page = styled.div`
   flex-direction: column;
   height: 100vh;
   gap: 20px;
-  background: #ffffff;
+  background: ${(props) => props.theme.background[300]};
 `;

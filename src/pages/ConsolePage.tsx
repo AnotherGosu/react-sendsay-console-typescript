@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import Header from 'components/console/header';
+import Header from 'components/header';
 import HistoryTrack from 'components/console/history';
 import ConsoleForm from 'components/console/form';
 

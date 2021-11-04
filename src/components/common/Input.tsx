@@ -24,16 +24,19 @@ const StyledInput = styled.input<{isInvalid: boolean}>`
   width: 100%;
   padding: 5px 10px;
   font-size: 18px;
-  border: ${(props) => (props.isInvalid ? '1px solid #cf2c00' : '1px solid rgba(0, 0, 0, 0.2)')};
+  border: 1px solid;
+  border-color: ${(props) => (props.isInvalid ? props.theme.error : props.theme.border.idle)};
   border-radius: 5px;
   box-shadow: ${(props) => (props.isInvalid ? '0px 0px 5px rgba(207, 44, 0, 0.5)' : '')};
+  background: ${(props) => props.theme.background[100]};
+  color: ${(props) => props.theme.text};
 
   :hover {
-    border-color: rgba(0, 0, 0, 0.4);
+    border-color: ${(props) => props.theme.border.active};
   }
 
   :focus {
-    outline: 1px solid rgba(0, 0, 0, 0.2);
+    outline: ${(props) => '1px solid ' + props.theme.border.idle};
   }
 `;
 
@@ -45,7 +48,7 @@ const LabelContainer = styled.div`
 
 const Label = styled.label<{isInvalid: boolean}>`
   font-size: 16px;
-  color: ${(props) => (props.isInvalid ? '#cf2c00' : '#0d0d0d')};
+  color: ${(props) => (props.isInvalid ? props.theme.error : props.theme.text)};
 `;
 
 const OptionalLabel = styled.span`

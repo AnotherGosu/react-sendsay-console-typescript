@@ -31,11 +31,13 @@ export default function HistoryTrack() {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 50px;
-  border-top: 1px solid rgba(0, 0, 0, 0.2);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+  border-color: ${(props) => props.theme.border.idle};
   background: #f6f6f6;
   height: 50px;
   position: relative;
+  background: ${(props) => props.theme.background[200]};
 
   ::after,
   ::before {
@@ -43,7 +45,7 @@ const Wrapper = styled.div`
     position: absolute;
     width: 15px;
     height: 100%;
-    background: linear-gradient(269.93deg, #f6f6f6 0.06%, rgba(246, 246, 246, 0) 99.93%);
+    background: ${(props) => 'linear-gradient(269.93deg, ' + props.theme.background[200] + ' 0.06%, rgba(246, 246, 246, 0) 99.93%)'};
     pointer-events: none;
     z-index: 2;
   }
@@ -80,5 +82,6 @@ const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  border-left: 1px solid rgba(0, 0, 0, 0.2);
+  border-left: 1px solid;
+  border-color: ${(props) => props.theme.border.idle};
 `;

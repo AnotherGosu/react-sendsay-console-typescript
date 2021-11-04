@@ -52,7 +52,7 @@ const Wrapper = styled.div`
   padding-top: 5px;
   border-radius: 3px;
   box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
-  background: #ffffff;
+  background: ${(props) => props.theme.background[200]};
 `;
 
 const Button = styled.button`
@@ -61,6 +61,7 @@ const Button = styled.button`
   padding: 10px 15px;
   text-align: left;
   font-size: 16px;
+  color: ${(props) => props.theme.text};
 
   :hover {
     background: #0055fb;

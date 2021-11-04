@@ -1,0 +1,1 @@
+export {themeSlice} from './slice';

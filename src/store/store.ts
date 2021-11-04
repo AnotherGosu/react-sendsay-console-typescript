@@ -3,10 +3,11 @@ import {TypedUseSelectorHook, useDispatch, useSelector} from 'react-redux';
 import storage from 'redux-persist/lib/storage';
 import {persistReducer, FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER} from 'redux-persist';
 
+import {themeSlice} from './slices/theme';
 import {authSlice} from './slices/auth';
 import {consoleSlice} from './slices/console/';
 
-const rootReducer = combineReducers({auth: authSlice.reducer, console: consoleSlice.reducer});
+const rootReducer = combineReducers({auth: authSlice.reducer, console: consoleSlice.reducer, theme: themeSlice.reducer});
 const persistedReducer = persistReducer(
   {
     key: 'root',

@@ -36,7 +36,7 @@ const Wrapper = styled.div`
   gap: 5px;
   padding: 0 10px;
   height: 30px;
-  background: #ffffff;
+  background: ${(props) => props.theme.background[100]};
   box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   cursor: pointer;

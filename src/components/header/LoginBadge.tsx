@@ -20,7 +20,8 @@ const Wrapper = styled.span`
   align-items: center;
   padding: 5px 15px;
   gap: 5px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  border: 1px solid;
+  border-color: ${(props) => props.theme.border.idle};
   border-radius: 5px;
 `;
 

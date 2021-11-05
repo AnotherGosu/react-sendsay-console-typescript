@@ -1,4 +1,5 @@
-import {InputProps} from 'helpers/types';
+import {InputProps, TableObject} from 'helpers/types';
+import {Column} from 'react-table';
 
 export const LOGIN_FORM_INPUTS: InputProps[] = [
   {label: 'Логин', name: 'login'},
@@ -43,3 +44,35 @@ export const BUTTONS = {
 };
 
 export const DROPDOW_WIDTH = 126;
+
+export const NAV_LINKS = [
+  {to: '/console', title: 'Консоль'},
+  {to: '/statistics', title: 'Статистика'},
+];
+
+export const TABLE_HEADERS: Column<TableObject>[] = [
+  {
+    Header: 'Action',
+    accessor: 'action',
+  },
+  {
+    Header: 'Count',
+    accessor: 'count',
+  },
+  {
+    Header: 'Success',
+    accessor: 'isSuccessful',
+  },
+];
+
+export const DOUGHNUT_CHART = {
+  labels: ['Успешные', 'Неуспешные'],
+  datasets: [
+    {
+      label: 'Успешность запросов',
+      backgroundColor: ['rgba(75, 192, 192, 0.2)', 'rgba(255, 99, 132, 0.2)'],
+      borderColor: ['rgba(75, 192, 192, 1)', 'rgba(255, 99, 132, 1)'],
+      borderWidth: 1,
+    },
+  ],
+};

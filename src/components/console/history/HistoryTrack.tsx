@@ -31,9 +31,7 @@ export default function HistoryTrack() {
 const Wrapper = styled.div`
   display: grid;
   grid-template-columns: 1fr 50px;
-  border-top: 1px solid;
-  border-bottom: 1px solid;
-  border-color: ${(props) => props.theme.border.idle};
+  border-bottom: ${(props) => '1px solid ' + props.theme.border.idle};
   background: #f6f6f6;
   height: 50px;
   position: relative;
